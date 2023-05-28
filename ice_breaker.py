@@ -2,11 +2,8 @@ from langchain import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
 
-information = """
-As executive vice president of the Microsoft Cloud and Enterprise group, Scott Guthrie is responsible for the company’s cloud infrastructure, server, database, management and development tools businesses. His engineering team builds Microsoft Azure, Windows Server, SQL Server, Active Directory, System Center, Visual Studio and .NET.
+from third_parties import linkedin
 
-Prior to leading the Cloud and Enterprise group, Guthrie helped lead Microsoft Azure, Microsoft’s public cloud platform. Since joining the company in 1997, he has made critical contributions to many of Microsoft’s key cloud, server and development technologies and was one of the original founders of the .NET project. Guthrie graduated with a bachelor’s degree in computer science from Duke University. He lives in Seattle with his wife and two children.
-"""
 if __name__ == "__main__":
     print("Hello LangChain!")
 
@@ -23,4 +20,5 @@ if __name__ == "__main__":
 
     chain = LLMChain(llm=llm, prompt=summary_prompt_template)
 
-    print(chain.run(information=information))
+    linkedin_response = linkedin.script_linkedin_profile("anything")
+    print(chain.run(information=linkedin_response))
